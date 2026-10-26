@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WalletPay — IBM Bob-a-Thon One-Pager</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 26px 32px 22px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .header h1 {
+      font-size: 23px;
+      font-weight: 800;
+      color: #c8102e;
+      letter-spacing: -0.2px;
+    }
+    .header h2 {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-top: 4px;
+    }
+
+    /* ── 3-column grid ── */
+    .columns {
+      display: grid;
+      grid-template-columns: 210px 1fr 218px;
+      gap: 0;
+      border-top: 1.5px solid #bbb;
+      padding-top: 14px;
+    }
+
+    .col-heading {
+      font-size: 13px;
+      font-weight: 400;
+      text-align: center;
+      padding-bottom: 10px;
+      color: #1a1a1a;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
+
+    .col-left  { padding-right: 18px; border-right: 1.5px solid #bbb; }
+    .col-mid   { padding: 0 20px; border-right: 1.5px solid #bbb; }
+    .col-right { padding-left: 18px; }
+
+    /* Section titles */
+    .section-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-top: 13px;
+      margin-bottom: 4px;
+    }
+    .section-title:first-of-type { margin-top: 0; }
+
+    p { line-height: 1.55; margin-bottom: 6px; font-size: 10.5px; }
+
+    ul { padding-left: 13px; margin-bottom: 7px; }
+    ul li { line-height: 1.5; margin-bottom: 2px; font-size: 10.5px; }
+    ul li b { font-weight: 700; }
+
+    code {
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-size: 9.5px;
+      background: #f2f2f2;
+      padding: 0 3px;
+      border-radius: 2px;
+    }
+
+    /* Mid-column divider */
+    .mid-divider {
+      border: none;
+      border-top: 1px solid #e2e2e2;
+      margin: 11px 0;
+    }
+
+    .sub-heading {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    /* Time-saved 2-up layout */
+    .time-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 14px;
+      margin-top: 5px;
+    }
+    .time-col-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 3px;
+    }
+
+    .highlight {
+      color: #c8102e;
+      font-weight: 700;
+      font-size: 10.5px;
+      margin-top: 5px;
+    }
+
+    /* Stack badges */
+    .stack-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 5px;
+    }
+    .badge {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 9px;
+      color: #333;
+    }
+
+    /* Clock icon row */
+    .icon-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 10px 0 5px;
+    }
+    .icon-clock {
+      width: 15px; height: 15px;
+      border: 2px solid #777;
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .icon-clock::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 1.5px; height: 5px;
+      background: #777;
+      transform: translate(-50%, -100%);
+      transform-origin: bottom center;
+    }
+    .icon-clock::after {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 4px; height: 1.5px;
+      background: #777;
+      transform: translateY(-50%);
+    }
+    .icon-label { font-size: 11px; font-weight: 700; }
+
+    /* Screenshot placeholders */
+    .screenshot-box {
+      background: #f5f5f5;
+      border: 1px solid #d5d5d5;
+      border-radius: 4px;
+      padding: 9px 8px;
+      margin-bottom: 9px;
+      font-size: 9.5px;
+      color: #666;
+      text-align: center;
+      min-height: 78px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.5;
+    }
+    .screenshot-box .sc-label {
+      font-weight: 700;
+      font-size: 10px;
+      color: #444;
+      margin-bottom: 3px;
+    }
+
+    /* Architecture diagram section */
+    .arch-section {
+      margin-top: 20px;
+      border-top: 1.5px solid #bbb;
+      padding-top: 16px;
+    }
+    .arch-section .arch-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+    }
+    .arch-section img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    /* Bob journey section */
+    .bob-journey {
+      background: #fafafa;
+      border: 1px solid #e2e2e2;
+      border-left: 3px solid #c8102e;
+      border-radius: 3px;
+      padding: 11px 16px 10px;
+      margin-bottom: 16px;
+      font-size: 10.5px;
+      line-height: 1.6;
+      color: #1a1a1a;
+    }
+    .bob-journey p {
+      margin-bottom: 7px;
+      font-size: 10.5px;
+    }
+    .bob-journey .bj-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #c8102e;
+      margin-bottom: 6px;
+    }
+    .bob-journey ul {
+      padding-left: 15px;
+      margin-bottom: 5px;
+    }
+    .bob-journey ul li {
+      font-size: 10.5px;
+      line-height: 1.55;
+      margin-bottom: 2px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 16px;
+      padding-top: 8px;
+      border-top: 1px solid #ddd;
+      font-size: 9.5px;
+      color: #666;
+      text-align: center;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <h1>WalletPay &ndash; One Madison</h1>
+    <h2>Biswajit Sarkar, Solution Architect &nbsp;&mdash;&nbsp; AI-Assisted Regulated Stablecoin Payment System</h2>
+  </div>
+
+  <!-- ── BOB JOURNEY ── -->
+  <div class="bob-journey">
+    <div class="bj-title">How IBM Bob Was Used in This Initiative</div>
+    <p>
+      In the past, I utilized IBM Bob for various technical tasks, such as refactoring code, modernizing existing codebases,
+      and resolving production issues. For this specific initiative, my objective was to explore a new technology and business
+      area where I had limited exposure, evaluating how effectively IBM Bob could facilitate the entire lifecycle&mdash;from
+      initial information gathering, option analysis, and comparative judgment, to final system design and production-quality
+      code generation, all without leaving Bob.
+    </p>
+    <p>The workflow was executed through the following structured components:</p>
+    <ul>
+      <li><b>Two Custom Modes</b> and several Bob&rsquo;s inbuilt modes</li>
+      <li>
+        <b>A Specification-Driven Development (SDD) File</b>: A structured requirements document produced in Bob&rsquo;s
+        Plan mode, comprehensively covering: user stories, acceptance criteria, technical constraints, and success metrics
+      </li>
+      <li>
+        Leveraging this single specification, Bob&rsquo;s <b>create-plan skill</b> generated a structured,
+        <b>10-sub-task delivery plan</b> detailing the exact scope, expected outcomes, and ordered action items for each
+        sub-task. Consequently, every subsequent implementation sprint remained strictly anchored to a verified,
+        reviewable execution plan.
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── 3-COLUMN BODY ── -->
+  <div class="columns">
+
+    <!-- ══════════════ LEFT — OVERVIEW ══════════════ -->
+    <div class="col-left">
+      <div class="col-heading">Overview</div>
+
+      <div class="section-title">The Problem:</div>
+      <p>
+        Building a compliant payment system requires months of engineering. Identity verification, 
+        KYC/AML enforcement, custodial wallet management, webhook security, audit logging 
+        The WalletPay PoC was built to answer a direct question: <b>can IBM’s AI-assisted development 
+        tooling compress that timeline without sacrificing quality?.</b>
+      </p>
+
+      <div class="section-title">Our Solution:</div>
+      <p><b>WalletPay</b> is a compliance-first stablecoin payment platform on
+        Base&nbsp;L2 (USDC). Five integrated workflows delivered:</p>
+      <ul>
+        <li><b>KYC / AML Onboarding</b> &mdash; Persona photo-ID + selfie; OFAC stub; wallet gated until approved</li>
+        <li><b>P2P USDC Transfers & Utility Bill Payment</b> &mdash; send by email, phone, or wallet; alias resolution; on-chain settlement</li>
+        <li><b>AI Chat Assistant</b> &mdash; every feature via natural language through IBM watsonx Orchestrate</li>
+        <li><b>Fabric Audit Trail</b> &mdash; every confirmed transfer anchored on Hyperledger Fabric 2.5; 3-org consortium; RegulatorOrg on independent channel</li>
+        <li><b>What Next</b> &mdash; Real OFAC/sanctions provider, Fraud/Anomally detection, MetaMask / WalletConnect for self-custodial wallet</li>
+      </ul>
+
+      <div class="section-title">Stack:</div>
+      <div class="stack-badges">
+        <span class="badge">Node.js 20</span>
+        <span class="badge">TypeScript</span>
+        <span class="badge">React 18</span>
+        <span class="badge">PostgreSQL 15</span>
+        <span class="badge">Circle USDC</span>
+        <span class="badge">Base L2</span>
+        <span class="badge">Hyperledger Fabric 2.5</span>
+        <span class="badge">watsonx Orchestrate</span>
+        <span class="badge">IBM Cloud Code Engine</span>
+        <span class="badge">MCP Server</span>
+      </div>
+    </div>
+
+    <!-- ══════════════ CENTRE — BENEFITS & BOB ══════════════ -->
+    <div class="col-mid">
+      <div class="col-heading">Benefits and Features</div>
+
+      <div class="sub-heading">Bob's Impact</div>
+      <ul>
+        <li><b>Spec-driven delivery</b>: <code>WalletPaymentSpec.md</code> &rarr; <code>openapi.yaml</code> &rarr; 10-sub-task plan &rarr; full implementation &mdash; no manual scaffolding</li>
+        <li><b>Architecture decisions documented</b>: Base L2 vs Arbitrum, USDC vs USDT vs DAI, MCP vs OpenAPI import &mdash; structured comparison tables, reviewable and revisable</li>
+        <li><b>Critical bug caught in review</b>: Circle webhook RSA vs HMAC-SHA256 &mdash; would have left all transfers permanently <code>pending</code> in production</li>
+        <li><b>Test-driven development</b>: 104 tests across 7 suites written <em>alongside</em> implementation; 80% line/function coverage enforced in CI</li>
+        <li><b>Multi-modal workflow</b>: Plan &rarr; Agent &rarr; Code Reviewer &rarr; Simplify &mdash; each mode used for its purpose; no external doc tab-switching</li>
+        <li><b>Fabric integration end-to-end</b>: network topology, chaincode, API client, Phase 2 multi-channel architecture &mdash; 8 production issues diagnosed and resolved</li>
+      </ul>
+
+      <hr class="mid-divider" />
+
+      <div class="icon-row">
+        <div class="icon-clock"></div>
+        <span class="icon-label">Time Saved with Bob</span>
+      </div>
+
+      <div class="time-grid">
+        <div>
+          <div class="time-col-label">Without Bob (estimated):</div>
+          <ul>
+            <li>API design &amp; scaffolding: 2–3 days</li>
+            <li>Circle + Persona integration: 2 days</li>
+            <li>MCP server architecture: 2–3 days</li>
+            <li>Fabric Phase 1 network + chaincode: 3–4 days</li>
+            <li>Fabric Phase 2 (3-org, 2-channel): 3–4 days</li>
+            <li>Test suite (80%+ coverage): 2 days</li>
+            <li>Architecture trade-off docs: 1–2 days</li>
+          </ul>
+          <p style="margin-top:4px; font-weight:700; font-size:10.5px;">Total: ~15–20 days</p>
+        </div>
+        <div>
+          <div class="time-col-label">With Bob (actual):</div>
+          <ul>
+            <li>Full API from spec: 1 intensive sprint</li>
+            <li>10 routes, 17 MCP tools, 6 React pages</li>
+            <li>3 Orchestrate agents connected + tested</li>
+            <li>Fabric Phase 1 live: 2025-07-31</li>
+            <li>Fabric Phase 2 fully delivered</li>
+            <li>104 tests written alongside code</li>
+            <li>All decisions documented &amp; traceable</li>
+          </ul>
+          <p class="highlight">Time saved: ~75&ndash;80% reduction in development time</p>
+        </div>
+      </div>
+
+      <hr class="mid-divider" />
+
+      <div class="sub-heading">Quality Highlights</div>
+      <ul>
+        <li><b>Compliance-first</b>: <code>requireKYC</code> middleware blocks all transfers until identity <code>approved</code>; every decision logged to <code>audit_logs</code></li>
+        <li><b>Webhook security</b>: RSA asymmetric (Circle) + HMAC-SHA256 (Persona); 401 on failure, zero state change</li>
+        <li><b>Injection hardening</b>: UUID format guard on <code>X-Behalf-Of-User</code> before any DB query</li>
+        <li><b>Immutable ledger</b>: Fabric <code>AND</code> endorsement policy &mdash; no single org forges a record; RegulatorOrg sees aggregated <code>SummaryRecord</code> only, never transaction PII</li>
+      </ul>
+    </div>
+
+    <!-- ══════════════ RIGHT — SCREENSHOTS ══════════════ -->
+    <div class="col-right">
+      <div class="col-heading">Screenshots</div>
+
+      <div class="screenshot-box">
+        <div class="sc-label">Dashboard</div>
+        USDC balance &middot; wallet address<br/>
+        KYC status badge &middot; chat widget
+      </div>
+
+      <div class="screenshot-box">
+        <div class="sc-label">Transfer Page</div>
+        Recipient field &middot; amount<br/>
+        alias resolution &middot; submit
+      </div>
+
+      <div class="screenshot-box">
+        <div class="sc-label">Bill Payment</div>
+        Biller cards &middot; pay now form<br/>
+        recurring schedule list
+      </div>
+
+      <div class="screenshot-box">
+        <div class="sc-label">Transaction History</div>
+        Unified P2P + bill history<br/>
+        Base Sepolia TX hash links
+      </div>
+      <div class="screenshot-box">
+        <div class="sc-label">AI Chat Assistant</div>
+        Query all transactions and reports<br/>
+        via natural language
+      </div>
+      <div class="screenshot-box">
+        <div class="sc-label">Fabric Explorer</div>
+        Audit Report & <br/>
+        consolidated transaction
+      </div>
+
+    </div>
+
+  </div><!-- /columns -->
+
+  <!-- ── SYSTEM ARCHITECTURE ── -->
+  <div class="arch-section">
+    <div class="arch-title">System Architecture</div>
+    <img src="walletPayDesign.jpg" alt="WalletPay System Architecture Diagram" />
+  </div>
+
+  <!-- ── SCREENSHOTS TABLE ── -->
+  <div class="arch-section">
+    <div class="arch-title">Screenshots</div>
+    <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+      <colgroup>
+        <col style="width:50%;" />
+        <col style="width:50%;" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td style="padding:6px 8px 6px 0; vertical-align:top;">
+            <img src="dashboard.png" alt="Screenshot 1" style="width:100%; height:auto; border:1px solid #ddd; border-radius:4px;" />
+          </td>
+          <td style="padding:6px 0 6px 8px; vertical-align:top;">
+            <img src="transfer.png" alt="Screenshot 2" style="width:100%; height:auto; border:1px solid #ddd; border-radius:4px;" />
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px 6px 0; vertical-align:top;">
+            <img src="history.png" alt="Screenshot 3" style="width:100%; height:auto; border:1px solid #ddd; border-radius:4px;" />
+          </td>
+          <td style="padding:6px 0 6px 8px; vertical-align:top;">
+            <img src="chat.png" alt="Screenshot 4" style="width:100%; height:auto; border:1px solid #ddd; border-radius:4px;" />
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px 0 0; vertical-align:top;">
+            <img src="biller.png" alt="Screenshot 5" style="width:100%; height:auto; border:1px solid #ddd; border-radius:4px;" />
+          </td>
+          <td style="padding:6px 0 0 8px; vertical-align:top;">
+            <img src="fabric_explorer.png" alt="Screenshot 6" style="width:100%; height:auto; border:1px solid #ddd; border-radius:4px;" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    WalletPay PoC &mdash; July 2025 (Phase 1 live) &middot; Phase 2 Fabric delivered August 2025<br/>
+    Built with IBM Bob &mdash; Plan &middot; Agent &middot; Code Reviewer &middot; Simplify modes &middot; create-plan &middot; build-mcp-server &middot; configure-mcp skills
+  </div>
+
+</body>
+</html>
